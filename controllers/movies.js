@@ -69,7 +69,7 @@ module.exports.createMovie = async (req, res, next) => {
     }
     res.send({ movie });
   } catch (e) {
-    console.log(e)
+    console.log(e);
     next(e);
   }
 };

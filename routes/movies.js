@@ -3,7 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 const {
   getMovies, deleteMovieById, createMovie,
 } = require('../controllers/movies');
-const { REGEX_MAIL_CHECK } = require('../utils/utils');
+// const { REGEX_MAIL_CHECK } = require('../utils/utils');
 
 router.get('/', getMovies);
 
