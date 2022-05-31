@@ -42,6 +42,7 @@ module.exports.createMovie = async (req, res, next) => {
     thumbnail,
     movieId,
   } = req.body;
+
   try {
     if (!country || !director
       || !duration || !year || !description
@@ -56,7 +57,7 @@ module.exports.createMovie = async (req, res, next) => {
       year,
       description,
       image,
-      trailer,
+      trailerLink: trailer,
       nameRU,
       nameEN,
       thumbnail,
@@ -68,6 +69,7 @@ module.exports.createMovie = async (req, res, next) => {
     }
     res.send({ movie });
   } catch (e) {
+    console.log(e)
     next(e);
   }
 };
