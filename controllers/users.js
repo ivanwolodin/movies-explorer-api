@@ -11,7 +11,7 @@ module.exports.getMe = async (req, res, next) => {
     if (!me) {
       next(new NotFoundError('Нет такого пользователя'));
     }
-    res.send({ data: me });
+    res.send({ email: me.email, name: me.name });
   } catch (e) {
     if (e.name === CAST_ERROR) {
       next(new BadRequestError('Некорректный id пользователя'));
@@ -22,16 +22,16 @@ module.exports.getMe = async (req, res, next) => {
 
 module.exports.updateUserInfo = async (req, res, next) => {
   try {
-    const { name, about } = req.body;
+    const { name, email } = req.body;
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { name, about },
+      { name, email },
       { new: true, runValidators: true },
     );
     if (!user) {
       next(new NotFoundError('Пользователь не найден'));
     }
-    res.send({ data: user });
+    res.send({ user });
   } catch (e) {
     next(e);
   }

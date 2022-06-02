@@ -14,6 +14,7 @@ module.exports.getMovies = async (req, res, next) => {
 
 module.exports.deleteMovieById = async (req, res, next) => {
   try {
+    console.log('sdfsdfsdf')
     const movie = await Movie.findById(req.params.movieId);
     if (!movie) {
       next(new NotFoundError('Нет фильма с таким id'));
@@ -36,7 +37,7 @@ module.exports.createMovie = async (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
@@ -46,7 +47,7 @@ module.exports.createMovie = async (req, res, next) => {
   try {
     if (!country || !director
       || !duration || !year || !description
-      || !image || !trailer || !nameRU
+      || !image || !trailerLink || !nameRU
       || !nameEN || !thumbnail || !movieId) {
       next(new BadRequestError('Не передано одно из полей'));
     }
@@ -57,7 +58,7 @@ module.exports.createMovie = async (req, res, next) => {
       year,
       description,
       image,
-      trailerLink: trailer,
+      trailerLink,
       nameRU,
       nameEN,
       thumbnail,

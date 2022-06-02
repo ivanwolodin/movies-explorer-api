@@ -7,9 +7,9 @@ const {
 
 router.get('/', getMovies);
 
-router.delete('/:cardId', celebrate({
+router.delete('/:movieId', celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().length(24).hex(),
+    movieId: Joi.string().length(24).hex(),
   }),
 }), deleteMovieById);
 
