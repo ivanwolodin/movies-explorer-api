@@ -14,7 +14,6 @@ module.exports.getMovies = async (req, res, next) => {
 
 module.exports.deleteMovieById = async (req, res, next) => {
   try {
-    console.log('sdfsdfsdf')
     const movie = await Movie.findById(req.params.movieId);
     if (!movie) {
       next(new NotFoundError('Нет фильма с таким id'));
@@ -70,7 +69,6 @@ module.exports.createMovie = async (req, res, next) => {
     }
     res.send({ movie });
   } catch (e) {
-    console.log(e);
     next(e);
   }
 };

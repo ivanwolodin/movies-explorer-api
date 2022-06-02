@@ -12,7 +12,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/auth');
 const { auth } = require('./middlewares/auth');
 const { handler404, generalErrorHandler } = require('./errors/errorHandlers');
-const { REGEX_MAIL_CHECK } = require('./utils/utils');
+// const { REGEX_MAIL_CHECK } = require('./utils/utils');
 
 const app = express();
 
@@ -40,7 +40,7 @@ app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
-    name: Joi.string().min(2).max(30)
+    name: Joi.string().min(2).max(30),
   }),
 }), createUser);
 
