@@ -12,7 +12,7 @@ const DATABASE_ERROR_CODE = 409;
 const MONGO_DB_DUPLICATE_EMAIL_CODE = 11000;
 
 const JWT_TOKEN = process.env.JWT_TOKEN || 'secret_code';
-const DATABASE_ADDRESS = process.env.DATABASE_ADDRESS || 'moviesdb';
+const DATABASE_ADDRESS = process.env.DATABASE_ADDRESS || 'mongodb://localhost:27017/moviesdb';
 
 const REGEX_MAIL_CHECK = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/;
 

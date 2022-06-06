@@ -21,7 +21,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(`mongodb://localhost:27017/${DATABASE_ADDRESS}`, {
+mongoose.connect(DATABASE_ADDRESS, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,

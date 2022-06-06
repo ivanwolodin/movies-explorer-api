@@ -4,7 +4,8 @@ const User = require('../models/user');
 const {
   CAST_ERROR,
 } = require('../utils/utils');
-const { DataBaseError } = require('../errors/DataBaseError');
+
+const { ConflictError } = require('../errors/ConflictError');
 
 module.exports.getMe = async (req, res, next) => {
   try {
@@ -24,13 +25,6 @@ module.exports.getMe = async (req, res, next) => {
 module.exports.updateUserInfo = async (req, res, next) => {
   try {
     const { name, email } = req.body;
-    if (!name || !email) {
-      next(new BadRequestError('Не передано одно из полей'));
-    }
-    const whoRequested = await User.findById(req.user._id);
-    if (whoRequested.email !== email) {
-      next(new DataBaseError('Нельзя изменить почту другого пользователя'));
-    }
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { name, email },
@@ -41,6 +35,9 @@ module.exports.updateUserInfo = async (req, res, next) => {
     }
     res.send({ user });
   } catch (e) {
+    if (e.codeName === 'DuplicateKey') {
+      next(new ConflictError());
+    }
     next(e);
   }
 };

@@ -2,6 +2,7 @@ const Movie = require('../models/movie');
 const { NotFoundError } = require('../errors/NotFoundError');
 const { BadRequestError } = require('../errors/BadRequestError');
 const { PrivilegeError } = require('../errors/PrivilegeError');
+const { VALIDATION_ERROR } = require('../utils/utils');
 
 module.exports.getMovies = async (req, res, next) => {
   try {
@@ -69,6 +70,9 @@ module.exports.createMovie = async (req, res, next) => {
     }
     res.send({ movie });
   } catch (e) {
+    if (e.name === VALIDATION_ERROR) {
+      next(new BadRequestError('Не удалось создать фильм'));
+    }
     next(e);
   }
 };
