@@ -6,7 +6,7 @@ const { VALIDATION_ERROR } = require('../utils/utils');
 
 module.exports.getMovies = async (req, res, next) => {
   try {
-    const movies = await Movie.find({});
+    const movies = await Movie.find({owner: req.user._id});
     res.send({ movies });
   } catch (e) {
     next(e);
