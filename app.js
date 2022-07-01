@@ -1,5 +1,5 @@
 const express = require('express');
-
+const cors = require('cors');
 const { PORT = 3000 } = process.env;
 
 const bodyParser = require('body-parser');
@@ -13,9 +13,10 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { auth } = require('./middlewares/auth');
 const { handler404, generalErrorHandler } = require('./errors/errorHandlers');
 // const { REGEX_MAIL_CHECK } = require('./utils/utils');
+const corsOptions = require('./utils/cors');
 
 const app = express();
-
+app.use(cors(corsOptions));
 app.use(helmet());
 
 app.use(bodyParser.json());
