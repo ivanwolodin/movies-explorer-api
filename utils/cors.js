@@ -2,8 +2,10 @@ const { CorsError } = require('../errors/CorsError');
 
 const whitelist = [
   'http://localhost:3000/',
-  'http://frontend15.nomoredomains.xyz',
-  'https://frontend15.nomoredomains.xyz',
+  'https://diploma.iwol.nomoreparties.sbs',
+  'https://diploma.iwol.nomoreparties.sbs',
+  'http://diploma.iwol.nomoreparties.sbs',
+  'http://diploma.iwol.nomoreparties.sbs'
 ];
 
 module.exports.corsOptions = {
